@@ -1,6 +1,6 @@
 package com.server.controller;
 
-import com.server.domain.vps.ServerInfo;
+import com.server.domain.vps.vo.ServerInfoVO;
 import com.server.exception.Result;
 import com.server.service.ServerInfoService;
 import io.swagger.annotations.Api;
@@ -32,7 +32,7 @@ public class ServerController {
 
     @ApiOperation(value = "获取服务器信息", notes = "获取服务器信息")
     @GetMapping("info")
-    public Result<List<ServerInfo>> getVpsInfo() {
+    public Result<List<ServerInfoVO>> getVpsInfo() {
         return Result.ok(serverInfoService.getVpsInfo());
     }
 

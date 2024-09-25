@@ -15,7 +15,7 @@ import java.time.LocalDate;
 
 /**
  * 服务器信息
- * @author wangbinzhe
+ * @author lklbjn
  */
 @ApiModel(description="服务器信息")
 @Data
@@ -29,6 +29,20 @@ public class ServerInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value="id")
     private Long id;
+
+    /**
+     * 提供商
+     */
+    @TableField(value = "brand")
+    @ApiModelProperty(value="提供商")
+    private String brand;
+
+    /**
+     * 地区
+     */
+    @TableField(value = "area")
+    @ApiModelProperty(value="地区")
+    private String area;
 
     /**
      * aff地址

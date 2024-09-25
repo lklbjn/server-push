@@ -5,6 +5,8 @@
     <!--@mbg.generated-->
     <!--@Table vps_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="price" jdbcType="VARCHAR" property="price" />
     <result column="expire_start" jdbcType="DATE" property="expireStart" />
@@ -12,7 +14,14 @@
     <result property="deleted" column="deleted" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, url, price, expire_start, expire_end, deleted
+      <!--@mbg.generated-->
+      id,
+      brand,
+      area,
+      url,
+      price,
+      expire_start,
+      expire_end,
+      deleted
   </sql>
 </mapper>
