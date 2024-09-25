@@ -37,7 +37,7 @@ public class SwaggerConfiguration {
                 .apiInfo(buildApiInfo())
                 .select()
                 //controller类的包路径
-                .apis(RequestHandlerSelectors.basePackage("com.vps.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.server.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
