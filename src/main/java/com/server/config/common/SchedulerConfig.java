@@ -21,9 +21,9 @@ public class SchedulerConfig {
     private String cron;
 
     /**
-     * 提醒推送时间
+     * 提醒推送时间【已失效】
      */
-    private Integer expiredDay;
+    private Integer expiredDay = 10;
 
     /**
      * 路径
