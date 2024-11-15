@@ -73,6 +73,13 @@ public class ServerInfo implements Serializable {
     private LocalDate expireEnd;
 
     /**
+     * 通知限制天数
+     */
+    @TableField(value = "notify_limit")
+    @ApiModelProperty(value="通知限制天数")
+    private Integer notifyLimit;
+
+    /**
      * 是否删除
      */
     @TableField(value = "deleted")

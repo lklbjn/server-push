@@ -37,7 +37,7 @@ public class LogFilter implements Filter {
 
         ResponseWrapper wrapper = new ResponseWrapper(response);
         filterChain.doFilter(request, wrapper);
-        //分界线，request拦截执行从这往前的代码，response拦截执行该行之后的代码
+        // 分界线，request拦截执行从这往前的代码，response拦截执行该行之后的代码
         StringBuilder buffer = new StringBuilder();
         if (response.getStatus() != HttpServletResponse.SC_OK) {
             if (ContentType.JSON.getValue().equals(request.getContentType())) {
@@ -48,7 +48,9 @@ public class LogFilter implements Filter {
                 }
             }
             log.info(String.join("==>", getIp(request), request.getRequestURI(), request.getContentType(), buffer.toString()));
-            log.error("Error message: {} {}" , response.getStatus(), request.getRequestURI());
+            log.error("Error message: {} {}", response.getStatus(), request.getRequestURI());
+        } else {
+            log.info(String.join("==>", getIp(request), request.getRequestURI(), request.getContentType()));
         }
     }
 
@@ -68,13 +70,13 @@ public class LogFilter implements Filter {
      */
     public static Map<String, Object> getParams(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>(16);
-        Enumeration paramNames = request.getParameterNames();
+        Enumeration<String> paramNames = request.getParameterNames();
         while (paramNames.hasMoreElements()) {
-            String paramName = (String) paramNames.nextElement();
+            String paramName = paramNames.nextElement();
             String[] paramValues = request.getParameterValues(paramName);
             if (paramValues.length > 0) {
                 String paramValue = paramValues[0];
-                if (paramValue.length() != 0) {
+                if (!paramValue.isEmpty()) {
                     map.put(paramName, paramValue);
                 }
             }

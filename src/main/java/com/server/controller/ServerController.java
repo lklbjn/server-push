@@ -1,5 +1,6 @@
 package com.server.controller;
 
+import com.server.config.common.SchedulerConfig;
 import com.server.domain.vps.vo.ServerInfoVO;
 import com.server.exception.Result;
 import com.server.service.ServerInfoService;
@@ -28,12 +29,24 @@ import java.util.List;
 public class ServerController {
 
     @Resource
-    ServerInfoService serverInfoService;
+    private SchedulerConfig schedulerConfig;
+    @Resource
+    private ServerInfoService serverInfoService;
 
     @ApiOperation(value = "获取服务器信息", notes = "获取服务器信息")
     @GetMapping("info")
     public Result<List<ServerInfoVO>> getVpsInfo() {
         return Result.ok(serverInfoService.getVpsInfo());
+    }
+
+    @ApiOperation(value = "检查快过期服务器", notes = "检查快过期服务器")
+    @GetMapping("check")
+    public Result<String> pushExpiredMessage() {
+        if (Boolean.FALSE.equals(schedulerConfig.getEnableCheck())) {
+            return Result.error("Unable");
+        }
+        serverInfoService.pushExpiredMessage();
+        return Result.ok();
     }
 
 }

@@ -29,4 +29,9 @@ public class SchedulerConfig {
      * 路径
      */
     private String gotifyUrl;
+
+    /**
+     * 路径
+     */
+    private Boolean enableCheck = false;
 }

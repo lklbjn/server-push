@@ -11,6 +11,7 @@
     <result column="price" jdbcType="VARCHAR" property="price" />
     <result column="expire_start" jdbcType="DATE" property="expireStart" />
     <result column="expire_end" jdbcType="DATE" property="expireEnd" />
+    <result property="notifyLimit" column="notify_limit" jdbcType="INTEGER"/>
     <result property="deleted" column="deleted" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List">
@@ -22,6 +23,7 @@
       price,
       expire_start,
       expire_end,
+      notify_limit,
       deleted
   </sql>
 </mapper>
