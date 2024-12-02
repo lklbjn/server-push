@@ -31,6 +31,13 @@ public class ServerInfo implements Serializable {
     private Long id;
 
     /**
+     * 类型(1服务器 2其它)
+     */
+    @TableField(value = "type")
+    @ApiModelProperty(value="类型")
+    private Integer type;
+
+    /**
      * 提供商
      */
     @TableField(value = "brand")
