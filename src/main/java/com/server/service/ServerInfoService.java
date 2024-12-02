@@ -35,6 +35,7 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
         List<ServerInfo> infos = lambdaQuery().le(ServerInfo::getExpireStart, now)
                 .ge(ServerInfo::getExpireEnd, now).list().stream().filter(info ->
                         info.getNotifyLimit() >= ChronoUnit.DAYS.between(now, info.getExpireEnd())).collect(Collectors.toList());
+        log.info("快过期服务器数量：{}。内容：{}", infos.size(), infos.stream().map(ServerInfo::getId).collect(Collectors.toSet()));
         infos.forEach(info -> {
             String title = info.getBrand() + "的" + info.getArea() +
                     "区域服务器即将过期[" + ChronoUnit.DAYS.between(now, info.getExpireEnd()) + "天]";
