@@ -52,11 +52,12 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
         log.info("快过期数量：{}。内容：{}", infos.size(), infos.stream().map(ServerInfo::getId).collect(Collectors.toSet()));
         infos.forEach(info -> {
             TypeEnum type = TypeEnum.getEnumByCode(info.getType());
+            long daysLeft = ChronoUnit.DAYS.between(now, info.getExpireEnd());
             if (notifyConfig.getGotify().isEnabled()) {
-                sendGotify(info, type, now);
+                sendGotify(info, type, daysLeft);
             }
             if (notifyConfig.getEmail().isEnabled()) {
-                sendEmail(info, type);
+                sendEmail(info, type, daysLeft);
             }
         });
     }
@@ -75,9 +76,9 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
     }
 
 
-    public void sendGotify(ServerInfo info, TypeEnum type, LocalDate now) {
+    public void sendGotify(ServerInfo info, TypeEnum type, Long daysLeft) {
         String title = info.getBrand() + "的" + (type.getNumber() == 1 ? info.getArea() + type.getCnName() : info.getArea()) +
-                "即将过期[" + ChronoUnit.DAYS.between(now, info.getExpireEnd()) + "天]";
+                "即将过期[" + daysLeft + "天]";
         String message = "如需继续使用，请即刻赶往续费：" + info.getUrl();
         HttpRequest.post(notifyConfig.getGotify().getUrl())
                 .form("title", title)
@@ -85,7 +86,7 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
                 .execute();
     }
 
-    public void sendEmail(ServerInfo info, TypeEnum type) {
+    public void sendEmail(ServerInfo info, TypeEnum type, Long daysLeft) {
         log.info("准备发送邮件");
         EmailProperty email = notifyConfig.getEmail();
         // SMTP服务器信息
@@ -140,6 +141,7 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
             // 创建数据模型
             Map<String, Object> templateData = new HashMap<>();
             templateData.put("typeName", type.getEnName());
+            templateData.put("daysLeft", daysLeft);
             templateData.put("recipient", capitalizeFirstLetter(info.getRecipient() == null ? email.getRecipient() : info.getRecipient()));
             templateData.put("typeNameUpper", convertToSnakeCase(type.getEnName()));
             templateData.put("url", info.getUrl());
