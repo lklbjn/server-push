@@ -1,4 +1,4 @@
-package com.server.domain.vps;
+package com.server.model.vps;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -85,6 +85,20 @@ public class ServerInfo implements Serializable {
     @TableField(value = "notify_limit")
     @ApiModelProperty(value="通知限制天数")
     private Integer notifyLimit;
+
+    /**
+     * 邮件通知地址
+     */
+    @TableField(value = "email_notify_address")
+    @ApiModelProperty(value="邮件通知地址")
+    private String emailNotifyAddress;
+
+    /**
+     * 收信人称呼
+     */
+    @TableField(value = "recipient")
+    @ApiModelProperty(value="收信人称呼")
+    private String recipient;
 
     /**
      * 是否删除

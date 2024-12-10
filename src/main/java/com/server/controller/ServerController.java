@@ -1,7 +1,7 @@
 package com.server.controller;
 
 import com.server.config.common.SchedulerConfig;
-import com.server.domain.vps.vo.ServerInfoVO;
+import com.server.model.vps.vo.ServerInfoVO;
 import com.server.exception.Result;
 import com.server.service.ServerInfoService;
 import io.swagger.annotations.Api;

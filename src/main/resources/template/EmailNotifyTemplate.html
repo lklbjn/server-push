@@ -1,0 +1,40 @@
+<div style="padding: 40px 55px;background-color: #031242;justify-items: center;display: grid;gap: 16px;">
+    <div style="background-color:#fff;border-radius:16px;padding:32px;background: #EBF3FF;">
+        <div class="mail-header" style="text-align:center"><img height="68"
+                src="https://cdn.jsdelivr.net/gh/lklbjn/cssmeihua@master/img/notify.png"
+                style="border:0;display:block;outline:0;text-decoration:none;height:68;max-width:100%;margin:0 auto"
+                data-width="68" data-height="68">
+            <div style="text-align: center;font-family: Swansea;font-size: 26px;font-style: normal;font-weight: 700;line-height: 38px;letter-spacing: -0.2px;background: linear-gradient(90deg, #FAD15E 23.59%, #DA8AFB 53.27%, #7CC7FE 82.96%);background-clip: text;-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                ${typeName} Expiration Notice<br></div>
+        </div>
+        <div class="mail-body" style="border-top:dashed 1px #e8ecef;padding:10px 0 0 0;margin:32px 0 10px 0;width:100%">
+            <p><b><span class="size" style="font-size:16px">Dear ${recipient}: </span></b><span class="size"
+                    style="font-size:16px"><br></span></p>
+            <div>
+
+                <p style="font-size: 16px;">This is a reminder that your <span
+                        style="color: red; font-weight: bold;">${typeNameUpper}</span> will expire soon.</p>
+                <p style="font-size: 16px;">Please take the necessary actions to renew them to avoid any interruptions.
+                </p>
+                <p style="font-size: 16px;">You can renew your services by clicking the link below: </p>
+
+                <div
+                    style="color: #FFCA2B !important;text-align: center;font-family: Swansea;font-size: 20px !important;font-style: normal;font-weight: 400 !important;line-height: 24px !important;letter-spacing: -0.2px !important;">
+                    &nbsp;
+                </div>
+                <div
+                    style="background: #031242;border-radius: 30px;color: #EBF3FF;padding: 4px 3px 4px 24px;cursor: pointer;gap: 10px;width: fit-content;margin: auto;margin-top: -20px;">
+                    <a href="${url}"
+                        style="display: flex;align-items: center;gap: 10px;width: fit-content;text-decoration: none;color: inherit;"><span
+                            style="color: #EBF3FF;">RenewNow</span> <img
+                            src="https://cdn.jsdelivr.net/gh/lklbjn/cssmeihua@master/img/right-template.png"
+                            style="width: 32px;right: 2px;top: 3px;"> </a>
+                </div>
+
+            </div>
+            <div><br></div>
+            <p><br></p>
+            <p style="text-align:right">- ServerPush<br></p>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
-package com.server.domain.vps.vo;
+package com.server.model.vps.vo;
 
-import com.server.domain.vps.ServerInfo;
+import com.server.model.vps.ServerInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
