@@ -9,8 +9,41 @@ spring:
 
 scheduler:
   cron: 0,5 10,14,15 * * * *
+  expiredDay: 30
   gotifyUrl: https://xxx.xxx.xxx/message?token=xxx
-  enableCheck: true
+  enableCheck: false
+
+xxl:
+  job:
+    enabled: true
+    addresses: http://1.1.1.1:9001/xxl-job-admin
+    appName: test
+    accessToken: 123456
+    address:
+    ip:
+    port: 9527
+    logPath:
+    logRetentionDays: 30
+
+notify:
+  gotify:
+    enabled: true
+    url: https://xxx.xxx.xxx/message?token=xxx
+  email:
+    enabled: true
+    recipient: User
+    host: xxx.xxx.xxx
+    port: 465
+    username: xxx@xxx.xxx
+    from: xxx@xxx.xxx
+    password: 123456
+    smtpAuth: true
+    socketFactoryClass: javax.net.ssl.SSLSocketFactory
+    smtpStarttlsEnable: false
+    defaultTo: xxx@xxx.xxx
+    connectionTimeout: 10000
+    timeout: 10000
+    debug: false
 
 mybatis-plus:
   global-config:
