@@ -128,7 +128,7 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
             }
             message.setRecipients(Message.RecipientType.TO, recipientAddresses);
             // 设置邮件主题
-            message.setSubject("Test Email");
+            message.setSubject(type.getEnName() + " Expiration Notice");
             // 设置邮件内容（HTML格式）
             // 配置FreeMarker
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
