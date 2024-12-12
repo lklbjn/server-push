@@ -143,7 +143,8 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
             templateData.put("typeName", type.getEnName());
             templateData.put("daysLeft", daysLeft);
             templateData.put("recipient", capitalizeFirstLetter(info.getRecipient() == null ? email.getRecipient() : info.getRecipient()));
-            templateData.put("typeNameUpper", convertToSnakeCase(type.getEnName()));
+            templateData.put("typeNameUpper", convertToSnakeCase(type.getEnName())
+                    + "<span style=\"font-style:italic\">[" + info.getBrand() + "-" + info.getArea() + "]</span>");
             templateData.put("url", info.getUrl());
             // 合并模板和数据模型
             StringWriter stringWriter = new StringWriter();
