@@ -106,9 +106,9 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>./jar</outputDirectory>
+                            <outputDirectory>/app</outputDirectory>
                             <finalName>
-                                vps-info
+                                app
                             </finalName>
                             <mainClass>
                                 com.server.ServerPushApplication

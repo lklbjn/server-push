@@ -1,17 +1,32 @@
-FROM jdk:1.8.321
-MAINTAINER lklbjn
-# 拷贝jar包
-ENV JAR_PATH jar/app.jar
-# 拷贝执行Jar包
-COPY $JAR_PATH app.jar
-# 设置配置文件路径
-ENV CONFIG_PATH /resources/application.yaml
-ENV RUN_JAR_PATH app.jar
+# 阶段 1: 使用 Maven 构建应用程序
+FROM maven:3.8.6-openjdk-8 AS builder
+
+# 设置工作目录
+WORKDIR /app
+
+# 将项目的所有文件拷贝到镜像中
+COPY . ./
+
+# 执行 Maven 打包命令（强制更新依赖）
+RUN mvn clean package -U -DskipTests
+
+# 阶段 2: 使用 OpenJDK 运行打包好的应用程序
+FROM openjdk:8-jdk-alpine
+
 # 设置时区
-RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && apk del tzdata
+
 # 暴露端口
 EXPOSE 8080
-# 挂载配置文件
+
+# 挂载配置文件目录
 VOLUME /resources
-# 执行Jar包
-ENTRYPOINT ["sh","-c","java -jar $RUN_JAR_PATH --spring.config.location=$CONFIG_PATH"]
+
+# 拷贝构建好的 JAR 文件到运行镜像中
+COPY --from=builder /app/target/*.jar /app/app.jar
+
+# 启动命令
+ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar --spring.config.location=/resources/"]

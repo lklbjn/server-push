@@ -53,9 +53,11 @@ public class ServerInfoService extends ServiceImpl<ServerInfoMapper, ServerInfo>
         infos.forEach(info -> {
             TypeEnum type = TypeEnum.getEnumByCode(info.getType());
             long daysLeft = ChronoUnit.DAYS.between(now, info.getExpireEnd());
+            log.info("Gotify通知：{}", notifyConfig.getGotify().isEnabled());
             if (notifyConfig.getGotify().isEnabled()) {
                 sendGotify(info, type, daysLeft);
             }
+            log.info("Email通知：{}", notifyConfig.getGotify().isEnabled());
             if (notifyConfig.getEmail().isEnabled()) {
                 sendEmail(info, type, daysLeft);
             }
