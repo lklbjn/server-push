@@ -1,4 +1,4 @@
-CREATE TABLE `vps_info` (
+CREATE TABLE IF NOT EXISTS `vps_info` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `type` int DEFAULT NULL COMMENT '类型(1服务器 2其它)',
   `brand` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '提供商',
