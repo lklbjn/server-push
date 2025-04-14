@@ -66,6 +66,13 @@ public class ServerInfo implements Serializable {
     private String price;
 
     /**
+     * 购买时间
+     */
+    @TableField(value = "purchase_time")
+    @ApiModelProperty(value="购买时间")
+    private LocalDate purchaseTime;
+
+    /**
      * 开始时间
      */
     @TableField(value = "expire_start")

@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `vps_info` (
   `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '地区',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'aff地址',
   `price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '价格',
+  `purchase_time` date DEFAULT NULL COMMENT '购买时间',
   `expire_start` date DEFAULT NULL COMMENT '开始时间',
   `expire_end` date DEFAULT NULL COMMENT '到期时间',
   `notify_limit` int DEFAULT NULL COMMENT '通知限制天数',
